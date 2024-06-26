@@ -85,13 +85,20 @@ const CreateEditModal = (props) => {
                             <Dropdown.Item eventKey="4" onClick={(e) => { setLevelOfDifficuilty('hard') }}>Hard</Dropdown.Item>
                         </DropdownButton>
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" hasValidation>
                         <Form.Label>No of Questions</Form.Label>
-                        <Form.Control type="number" onChange={(e) => setNoOfQuestions(e.target.value)} value={noOfQuestions || ''} style={{ border: '1px solid #CC0126' }} />
+                        <Form.Control type="number" isInvalid={Number(noOfQuestions) <= Number(passingCriteria)} onChange={(e) => setNoOfQuestions(e.target.value)} value={noOfQuestions || ''} style={{ border: '1px solid #CC0126' }} />
+                        <Form.Control.Feedback type="invalid">
+                            Should be greater than or Equal to 'Passing Criteria'
+                        </Form.Control.Feedback>
+
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Passing Criteria</Form.Label>
-                        <Form.Control type="number" onChange={(e) => setPassingCriteria(e.target.value)} value={passingCriteria || ''} style={{ border: '1px solid #CC0126' }} />
+                        <Form.Control type="number" isInvalid={Number(passingCriteria) >= Number(noOfQuestions)} onChange={(e) => setPassingCriteria(e.target.value)} value={passingCriteria || ''} style={{ border: '1px solid #CC0126' }} />
+                        <Form.Control.Feedback type="invalid">
+                            Should be less than or Equal to 'No of Questions'
+                        </Form.Control.Feedback>
                     </Form.Group>
                 </div>
             </div>
