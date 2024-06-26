@@ -1,0 +1,65 @@
+.main-container {
+    margin-top: -10rem;
+}
+
+.create-assessment-btn {
+    padding: 1rem 3rem;
+    background-color: #CC0126;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+}
+
+.table-container {
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 2rem;
+    margin: 1rem;
+    background-color: white;
+    height: 35rem;
+}
+
+.theme-color {
+    background-color: #CC0126;
+    color: white;
+}
+
+tbody {
+    display: block;
+    height: 31.3rem;
+    overflow-y: auto;
+    border-radius: 0rem 0rem 2rem 2rem;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-table {
+    border-radius: 2rem;
+}
+
+.context-menu {
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid grey;
+    box-shadow: 1px 1px 10px grey;
+    width: 15rem;
+    color: #CC0126;
+}
+
+.menu-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}

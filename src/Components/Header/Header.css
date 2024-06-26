@@ -1,0 +1,5 @@
+.header-container {
+    background-image: url('../../Assests/header-img.png');
+    height: 25rem;
+    background-size: cover;
+}
