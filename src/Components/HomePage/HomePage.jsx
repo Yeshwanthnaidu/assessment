@@ -53,13 +53,18 @@ const HomePage = () => {
     const columnHelper = createColumnHelper()
 
     const columns = [
-        columnHelper.accessor('', {
-            id: info => info.column.id,
+        columnHelper.accessor('checkbox', {
+            id: "checkbox",
             header: () => '',
             cell: info => <input type='checkbox' />,
         }),
         columnHelper.accessor('name', {
             header: () => <span>Name</span>,
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('active', {
+            id: "active",
+            header: () => <span>Active</span>,
             cell: info => info.getValue(),
         }),
         columnHelper.accessor('description', {
@@ -108,6 +113,8 @@ const HomePage = () => {
         URL.revokeObjectURL(url);
     }
 
+    const minWidthColumns = ['active', 'checkbox'];
+
     return <React.Fragment>
         <div className="main-container d-flex flex-column align-items-center">
             <div className="d-flex justify-content-between w-75">
@@ -127,7 +134,8 @@ const HomePage = () => {
                             <tr key={headerGroup.id} className="cursor-pointer">
                                 {headerGroup.headers.map((header, index) => (
                                     <>
-                                        <th className="py-3" style={{ borderRight: index !== headerGroup.headers.length - 1 ? '1px solid grey' : '', width: index == 0 ? '5rem' : '', borderRadius: index == 0 ? '2rem 0rem 0rem 0rem' : index === headerGroup.headers.length - 1 ? '0rem 2rem 0rem 0rem' : '' }} key={header.id}>
+                                        <th className="py-3" style={{ borderRight: index !== headerGroup.headers.length - 1 ? '1px solid grey' : '', width: minWidthColumns.includes(header.column.id) ? '5rem' : '', borderRadius: index == 0 ? '2rem 0rem 0rem 0rem' : index === headerGroup.headers.length - 1 ? '0rem 2rem 0rem 0rem' : '' }} key={header.id}>
+                                            {console.log(header)}
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -144,11 +152,12 @@ const HomePage = () => {
                         {table.getRowModel().rows.map(row => (
                             <ContextMenuTrigger id="same_unique_identifier">
                                 <tr key={row.id} id={row.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }} onContextMenu={(e) => handleContextMenu(e, row.original)}>
-                                    {row.getVisibleCells().map((cell, index) => (
-                                        <td key={cell.id} className="py-3" style={{ width: index == 0 ? '5rem' : '', }}>
+                                    {row.getVisibleCells().map((cell, index) => {
+                                        { console.log("cell =>", cell) }
+                                        return <td key={cell.id} className="py-3" style={{ width: minWidthColumns.includes(cell.column.id) ? '5rem' : '', }}>
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </td>
-                                    ))}
+                                    })}
                                 </tr>
                             </ContextMenuTrigger>
                         ))}

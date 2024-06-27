@@ -2,4 +2,14 @@
     background-image: url('../../Assests/header-img.png');
     height: 25rem;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-text {
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 6rem;
+    font-weight: 700;
 }
